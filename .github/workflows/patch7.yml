@@ -40,7 +40,7 @@ jobs:
       id: get_latest
       run: |
         echo $(uname -a)
-        NEWEST=$(curl -s https://upgrade.mikrotik.com/routeros/NEWESTa7.stable)
+        NEWEST=$(curl -s https://download.mikrotik.com/routeros/NEWESTa7.stable)
         LATEST_VERSION=$(echo "$NEWEST" | cut -d' ' -f1)
         BUILD_TIME=$(echo "$NEWEST" | cut -d' ' -f2)
         echo Latest Version: $LATEST_VERSION
@@ -52,7 +52,7 @@ jobs:
           exit 0
         fi
         echo "has_new_version=true" >> $GITHUB_OUTPUT
-        curl -s -o CHANGELOG https://upgrade.mikrotik.com/routeros/$LATEST_VERSION/CHANGELOG
+        curl -s -o CHANGELOG https://download.mikrotik.com/routeros/$LATEST_VERSION/CHANGELOG
         cat CHANGELOG
         echo "NEWEST=${NEWEST}" >> $GITHUB_ENV
         echo "LATEST_VERSION=${LATEST_VERSION}" >> $GITHUB_ENV
